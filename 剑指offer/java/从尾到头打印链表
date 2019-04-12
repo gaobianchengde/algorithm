@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /*
  * 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
@@ -18,17 +20,19 @@ import java.util.ArrayList;
 class Solution {
     
     public static void main(String[] args) {
-    	
-	}
+        
+    }
     
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-    	ArrayList<Integer> arr = new ArrayList<Integer>();
-    		if(listNode != null) {
-    			this.printListFromTailToHead(listNode.next);
-    			arr.add(listNode.val);
-    		}
-    	
-		return arr;
-        
+        Stack s = new Stack();
+        while(listNode != null) {
+            s.push(listNode.val);
+            listNode = listNode.next;
+        }
+        List<Integer> list = new ArrayList<Integer>();
+        while(!s.isEmpty()) {
+            list.add((Integer) s.pop());
+        }
+        return (ArrayList<Integer>) list;      
     }
 }
