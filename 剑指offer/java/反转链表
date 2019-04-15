@@ -1,0 +1,25 @@
+/*
+ * 题目描述
+输入一个链表，反转链表后，输出新链表的表头。
+ */
+
+/*
+ * 
+ */
+public class Solution {
+    public ListNode ReverseList(ListNode head) {
+    	ListNode newHead = null;
+    	ListNode tail = head;
+    	ListNode pre = null;
+    	while(tail != null) {
+    		ListNode pNext = tail.next;
+    		if(pNext == null) {
+    			newHead = tail;
+    		}
+    		tail.next = pre;
+    		pre = tail;
+    		tail = pNext;
+    	}
+    	return newHead;
+    }
+}
