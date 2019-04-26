@@ -1,0 +1,25 @@
+/*
+ * 题目描述
+给定一个二叉树，检查它是否是镜像对称的。
+ */
+
+/*
+ * 
+ */
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return isMirrorTree(root, root);
+    }
+
+	private boolean isMirrorTree(TreeNode root1, TreeNode root2) {
+		if(root1==null && root2==null)
+		return true;
+		if(root1 == null || root2 == null)
+			return false;
+		if(root1.val == root2.val)
+			return isMirrorTree(root1.right, root2.left) && isMirrorTree(root1.left, root2.right);
+		
+		return false;
+	}
+}

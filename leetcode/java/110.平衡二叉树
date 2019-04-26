@@ -1,0 +1,44 @@
+/*
+ * 题目描述
+给定一个二叉树，判断它是否是高度平衡的二叉树。
+ */
+
+/*
+ * 
+ */
+
+class Solution {
+    int leftHight = 0;
+    int rightHight = 0;
+    public boolean isBalanced(TreeNode root) {
+        if(root == null)
+            return true;
+        if(root.left == null)
+            leftHight = 0;
+        else
+            leftHight = countBalanced(root.left);
+        if(root.right == null)
+            rightHight = 0;
+        else
+            rightHight = countBalanced(root.right);
+        if(Math.abs(leftHight-rightHight) >1)
+            return false;
+        Boolean b1 = isBalanced(root.left);
+        Boolean b2 = isBalanced(root.right);
+        return b1 && b2;
+        
+    }
+    //求子树的最大高度
+    public int countBalanced(TreeNode root) {
+        if(root == null)
+            return 0;
+        if(root.left != null && root.right != null)
+            return Math.max(countBalanced(root.left), countBalanced(root.right)) + 1;
+        else if(root.left != null)
+            return countBalanced(root.left) + 1;
+        else if(root.right != null)
+            return countBalanced(root.right) + 1;
+        else
+            return 1;
+    }
+}
