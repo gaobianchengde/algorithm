@@ -1,0 +1,28 @@
+/*
+ * 题目描述
+输入一棵二叉树，判断该二叉树是否是平衡二叉树。
+ */
+
+
+/*
+ * 
+ */
+public class Solution {
+	boolean flag = true;
+    public boolean IsBalanced_Solution(TreeNode root) {
+    	MaxDepth(root);
+    	return flag;
+    }
+    
+    public int MaxDepth(TreeNode root) {
+    	if(root == null)
+    		return 0;
+    	int leftMaxDepth = MaxDepth(root.left);
+    	int rightMaxDepth = MaxDepth(root.right);
+
+    	if(Math.abs(leftMaxDepth - rightMaxDepth) > 1) {
+    		flag = false;
+    	}
+    	return Math.max(leftMaxDepth, rightMaxDepth) + 1;
+    }
+}
