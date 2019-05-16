@@ -1,0 +1,38 @@
+/*
+ * 题目描述
+输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
+ */
+
+
+/*
+ * 
+a+b=sum,a和b越远乘积越小，而一头一尾两个指针往内靠近的方法找到的就是乘积最小的情况。
+如果是乘积最大的情况就是一直找到两个指针重合，每次找到一个就将之前返回的结果向量清空然后更新为新找到的。
+ */
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> FindNumbersWithSum(int [] array,int sum) {
+    	ArrayList<Integer> list = new ArrayList<Integer>();
+    	if(array.length == 0 || array.length == 1 || array == null)
+    		return list;
+        int m=0, n=0, plow=0, phigh=array.length-1;
+        while(plow < phigh) {
+        	if(array[plow]+array[phigh] == sum) {
+        		if((m==0 && m==0) || (m*n > array[plow]*array[phigh])) {
+        			m = array[plow];
+        			n = array[phigh];
+        			break;
+        		}
+        	}else if(array[plow]+array[phigh] < sum) {
+        		plow++;
+        	}else {
+        		phigh--;
+        	}
+        }
+        if(m!=0 && n!=0) {
+        	list.add(m);
+        	list.add(n);
+        }
+        return list;
+    }
+}
